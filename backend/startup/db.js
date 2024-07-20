@@ -1,4 +1,4 @@
-const mysql = require("mysql2/promise")
+const mysql = require("mysql2")
 
 
 const db = mysql.createPool({
@@ -7,11 +7,6 @@ const db = mysql.createPool({
     password: "my-secret-pw",
     database: "collegeSpace",
     port: "3306"
-}).promise
-
-db.connect(function (err) {
-    if (err)
-        return console.log(err)
-})
+}).promise();
 
 module.exports = db
