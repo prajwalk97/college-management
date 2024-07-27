@@ -1,18 +1,26 @@
 
 import './App.css'
+import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import Router from './Router';
+import { createTheme, ThemeProvider } from '@mui/material';
 axios.defaults.baseURL = "http://localhost:1500/api/";
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem(
   "x-auth-token"
 );
-function App() {
-
+const App = () => {
+  const appTheme = createTheme({
+    zIndex: {
+      drawer: 1200
+    }
+  })
   return (
     <>
-      <div>
-        {"Hello world"}
-      </div>
+      <ThemeProvider theme={appTheme}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   )
 }
