@@ -63,7 +63,6 @@ export default function SignIn(props) {
         localStorage.setItem("x-auth-token", data.token);
         setWrong(false);
         dispatch(updateJWT(data.token));
-        dispatch(updateUserData(data.email, data.name));
     }
 
     let text = " SIGN IN";

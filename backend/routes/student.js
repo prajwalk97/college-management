@@ -86,12 +86,12 @@ router.put("/", auth, college_admin, function (req, res) {
 router.get("/", auth, college_admin, function (req, res) {
   const sql =
     "SELECT name, email, year, d_id, counsellor_id, cgpa, usn, s_id, current_backlogs, is_spc,d_name FROM STUDENT NATURAL JOIN DEPARTMENT";
-  db.query(sql, function (err, results, fields) {
-    if (err) {
-      res.status(400).send(err.sqlMessage);
-      return console.log(err);
+  db.query(sql).then(function (results) {
+    if (!results[0].length) {
+      return res.status(400).send("unexpected error occured");
+      // return console.log(err);
     }
-    res.send(results);
+    res.send(results[0]);
   });
 });
 
