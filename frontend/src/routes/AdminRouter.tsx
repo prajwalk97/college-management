@@ -8,6 +8,8 @@ import { trackPromise } from "react-promise-tracker";
 import axios from "axios";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import EditStudent from "../components/Admin/EditStudent";
+import EditTeacher from "../components/Admin/EditTeacher";
+import StudentCourse from "../components/Admin/CreateCourse";
 
 export default function AdminRouter() {
     const [isNavbarOpen, setNavbarOpen] = useState(false);
@@ -27,7 +29,7 @@ export default function AdminRouter() {
                 .catch((err) => {
                     if (err.response && err.response.status === 400) {
                         alert(err.response.data);
-                        navigateTo('/')
+                        navigateTo('/', { replace: true })
                     } else {
                         alert("Sorry!! There is something wrong with the Server");
                     }
@@ -40,9 +42,9 @@ export default function AdminRouter() {
             <Navbar isNavbarOpen={isNavbarOpen} onCloseHandler={setNavbarOpen} />
             <Routes>
                 <Route path="/" element={<EditStudent />} />
-                {/* <Route path="/home/admin/teacher/" element={EditTeacher} />
-                <Route path="/home/admin/register/" element={StudentCourse} />
-                <Route path="/home/admin/course/" element={AddCourse} />
+                <Route path="/teacher" element={<EditTeacher />} />
+                <Route path="/course" element={<StudentCourse />} />
+                {/* <Route path="/home/admin/course/" element={AddCourse} />
                 <Route path="/home/admin/design/" element={DesignForm} /> */}
             </Routes>
             <Loading />

@@ -11,13 +11,12 @@ import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { trackPromise } from "react-promise-tracker";
 import Loading from "./Loading";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { updateJWT } from "../reducers/auth/actions";
-import { updateUserData } from "../reducers/user/actions";
 const theme = createTheme({
     components: {
         // Name of the component
@@ -83,7 +82,7 @@ export default function SignIn(props) {
                     )
                     .then((result) => {
                         onSigninHandler(result.data);
-                        navigateTo("/home/admin");
+                        navigateTo("/home/admin", { replace: true });
                     })
                     .catch((err) => {
                         if (err.response && err.response.status === 400) setWrong(true);
@@ -105,7 +104,7 @@ export default function SignIn(props) {
                     )
                     .then((result) => {
                         onSigninHandler(result.data);
-                        navigateTo("/home/teacher");
+                        navigateTo("/home/teacher", { replace: true });
                     })
                     .catch((err) => {
                         console.log(err.response);
@@ -128,7 +127,7 @@ export default function SignIn(props) {
                     )
                     .then((result) => {
                         onSigninHandler(result.data);
-                        navigateTo("/home/student");
+                        navigateTo("/home/student", { replace: true });
                     })
                     .catch((err) => {
                         if (err.response && err.response.status === 400) setWrong(true);

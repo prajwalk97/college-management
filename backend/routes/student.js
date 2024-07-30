@@ -19,6 +19,7 @@ router.post("/", auth, college_admin, function (req, res) {
     password,
     is_spc,
   } = req.body;
+  console.log("hiiiiiiiiiiiiiiiiiiii")
   db.query(
     sql,
     [
@@ -32,35 +33,24 @@ router.post("/", auth, college_admin, function (req, res) {
       current_backlogs,
       password,
       is_spc,
-    ],
-    function (err, results, fields) {
-      if (err) {
-        res.status(400).send(err.sqlMessage);
-        return console.log(err);
-      }
-      res.send(results);
+    ]
+  ).then(function (results) {
+    if (!results[0].affectedRows) {
+      res.status(400).send(err.sqlMessage);
+      return console.log(err);
     }
-  );
+    res.send(results[0]);
+  }).catch((error) => {
+    console.log(error);
+    return res.status(400).send(error.sqlMessage);
+  });
 });
 
 router.put("/", auth, college_admin, function (req, res) {
-  const sql =
-    "UPDATE STUDENT SET name=?,email=?,year=?,d_id=?,counsellor_id=?,cgpa=?,usn=?,current_backlogs=?,is_spc=? WHERE s_id=?";
-  const {
-    name,
-    email,
-    year,
-    d_id,
-    counsellor_id,
-    cgpa,
-    usn,
-    current_backlogs,
-    is_spc,
-    s_id,
-  } = req.body;
-  db.query(
-    sql,
-    [
+  try {
+    const sql =
+      "UPDATE STUDENT SET name=?,email=?,year=?,d_id=?,counsellor_id=?,cgpa=?,usn=?,current_backlogs=?,is_spc=? WHERE s_id=?";
+    const {
       name,
       email,
       year,
@@ -71,16 +61,34 @@ router.put("/", auth, college_admin, function (req, res) {
       current_backlogs,
       is_spc,
       s_id,
-    ],
-    function (err, results, fields) {
-      console.log(results);
-      if (err) {
-        res.status(400).send(err.sqlMessage);
-        return console.log(err);
-      }
-      res.send(results);
-    }
-  );
+    } = req.body;
+    db.query(
+      sql,
+      [
+        name,
+        email,
+        year,
+        d_id,
+        counsellor_id,
+        cgpa,
+        usn,
+        current_backlogs,
+        is_spc,
+        s_id,
+      ]).then(function (results) {
+        console.log("re", results[0].changedRows);
+        if (!results[0].changedRows) {
+          return res.status(400).send("no data has been changed");
+          // return console.log(err);
+        }
+        res.send(results[0]);
+      }).catch((error) => {
+        console.log(error);
+        return res.status(400).send(error.sqlMessage);
+      });
+  } catch (error) {
+    return res.status(400).send("You have entered incorrectly");
+  }
 });
 
 router.get("/", auth, college_admin, function (req, res) {
@@ -95,15 +103,22 @@ router.get("/", auth, college_admin, function (req, res) {
   });
 });
 
-router.delete("/", auth, college_admin, function (req, res) {
-  const sql = `DELETE FROM STUDENT WHERE s_id=?`;
-  db.query(sql, [req.body.s_id], function (err, results, fields) {
-    if (err) {
-      res.status(400).send(err.sqlMessage);
-      return console.log(err);
-    }
-    res.send(results);
-  });
+router.delete("/:id", auth, college_admin, function (req, res) {
+  try {
+    const sql = `DELETE FROM STUDENT WHERE s_id=?`;
+    db.query(sql, [req.params.id]).then(function (results) {
+      console.log(results);
+      if (!results[0].affectedRows) {
+        return res.status(400).send("unexpected error occured");
+      }
+      res.send(results[0]);
+    }).catch((error) => {
+      console.log(error);
+      return res.status(400).send(error.sqlMessage);
+    });
+  } catch (error) {
+    return res.status(400).send("You have entered incorrectly");
+  }
 });
 
 module.exports = router;

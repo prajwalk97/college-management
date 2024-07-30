@@ -10,7 +10,7 @@ function Router() {
     return (
         <Routes>
             <Route path="/" element={<FirstPage />} />
-            <Route path="/home/admin" element={<AdminRouter />} />
+            <Route path="/home/admin/*" element={<AdminRouter />} />
             <Route path="/home/student" element={<StudentRouter />} />
             <Route path="/home/teacher" element={<TeacherRouter />} />
             <Route path="/login/teacher" element={<SignIn isTeacher={true} isAdmin={false} />} />

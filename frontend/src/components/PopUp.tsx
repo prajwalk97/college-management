@@ -11,7 +11,7 @@ export default function PopUp(props) {
     const handleClose2 = () => {
         localStorage.clear()
         props.setOpen(false)
-        navigateTo('/')
+        navigateTo('/', { replace: true })
     }
 
     return (

@@ -19,15 +19,17 @@ router.post("/add", auth, college_admin, function (req, res) {
   const sql = "INSERT INTO COURSE(name,c_code,d_id) VALUES (?,?,?)";
   db.query(
     sql,
-    [req.body.name, req.body.c_code, req.body.d_id],
-    function (err, results, fields) {
-      if (err) {
-        res.status(400).send(err.sqlMessage);
-        return console.log(err);
-      }
-      res.send(results);
+    [req.body.name, req.body.c_code, req.body.d_id]
+  ).then(function (results) {
+    if (!results[0].affectedRows) {
+      res.status(400).send(err.sqlMessage);
+      return console.log(err);
     }
-  );
+    res.send(results[0]);
+  }).catch((error) => {
+    console.log(error);
+    return res.status(400).send(error.sqlMessage);
+  });
 });
 
 router.get("/all", auth, college_admin, function (req, res) {

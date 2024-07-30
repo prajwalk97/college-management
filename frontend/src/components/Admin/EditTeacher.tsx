@@ -11,12 +11,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from "@mui/material/Button";
 import { Box, Tooltip, IconButton, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
-export default function EditStudent() {
+export default function EditTeacher() {
     const [data, setData] = useState([]);
     const columns = useMemo(() => [
         {
             header: 'id',
-            accessorKey: 's_id',
+            accessorKey: 'i_id',
             enableEditing: false,
             size: 80,
         },
@@ -53,40 +53,8 @@ export default function EditStudent() {
             // validate: (rowData) => Boolean(rowData.d_id),
         },
         {
-            header: "USN",
-            accessorKey: "usn",
-            muiEditTextFieldProps: {
-                required: true
-                //optionally add validation checking for onBlur or onChange
-            },
-            //   validate: (rowData) => Boolean(rowData.usn)
-        },
-        {
-            header: "Year",
-            accessorKey: "year",
-            type: "numeric",
-            align: "left",
-            muiEditTextFieldProps: {
-                required: true
-                //optionally add validation checking for onBlur or onChange
-            },
-            // validate: (rowData) => Boolean(rowData.year),
-        },
-        {
-            header: "Backlogs",
-            accessorKey: "current_backlogs",
-            type: "numeric",
-            align: "left",
-            min: 0,
-            initialEditValue: 0,
-            muiEditTextFieldProps: {
-                required: true
-                //optionally add validation checking for onBlur or onChange
-            },
-        },
-        {
-            header: "SPC",
-            accessorKey: "is_spc",
+            header: "HOD",
+            accessorKey: "is_hod",
             type: "boolean",
             initialEditValue: 0,
             muiEditTextFieldProps: {
@@ -95,38 +63,16 @@ export default function EditStudent() {
             },
         },
         {
-            header: "CGPA",
-            accessorKey: "cgpa",
-            align: "left",
-            muiEditTextFieldProps: {
-                required: true
-                //optionally add validation checking for onBlur or onChange
-            },
-            // validate: (rowData) => Boolean(rowData.cgpa),
-        },
-        {
-            header: "Counsellor Id",
-            accessorKey: "counsellor_id",
-            type: "numeric",
-            align: "left",
-            muiEditTextFieldProps: {
-                required: true
-                //optionally add validation checking for onBlur or onChange
-            },
-            // validate: (rowData) => Boolean(rowData.counsellor_id),
-        },
-        {
             header: "password",
             accessorKey: "password",
         }
     ], []);;
     const openDeleteConfirmModal = (row) => {
+        console.log("rewww", row);
         if (window.confirm('Are you sure you want to delete this user?')) {
-            // deleteUser(row.original.id);
-            console.log("hiii from editStudent", row);
             trackPromise(
                 axios
-                    .delete("/student/" + row.original.s_id, {
+                    .delete("/teacher/" + row.original.i_id, {
                         headers: { "x-auth-token": localStorage["x-auth-token"] },
                     })
                     .then((results) => {
@@ -146,7 +92,7 @@ export default function EditStudent() {
         console.log(props.values)
         trackPromise(
             axios
-                .put("/student", props.values, {
+                .put("/teacher", props.values, {
                     headers: { "x-auth-token": localStorage["x-auth-token"] },
                 })
                 .then((results) => {
@@ -165,7 +111,7 @@ export default function EditStudent() {
     const handleCreateUser = (props) => {
         trackPromise(
             axios
-                .post("/student", props.values, {
+                .post("/teacher", props.values, {
                     headers: { "x-auth-token": localStorage["x-auth-token"] },
                 })
                 .then((results) => {
@@ -243,12 +189,12 @@ export default function EditStudent() {
                 </DialogActions>
             </>
         ),
-        //table options as options to this hook
+        initialState: { columnVisibility: { password: false } },
     });
     useEffect(() => {
         trackPromise(
             axios
-                .get("/student", {
+                .get("/teacher", {
                     headers: { "x-auth-token": localStorage["x-auth-token"] },
                 })
                 .then((results) => {
