@@ -70,7 +70,7 @@ export const FirstPage = () => {
 
     return (<>
         <ThemeProvider theme={theme}>
-            <Container>
+            <Container classes={classes.container}>
                 <Grid
                     container
                     spacing={3}
