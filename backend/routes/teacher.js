@@ -48,7 +48,6 @@ router.get("/", auth, college_admin, function (req, res) {
   db.query(sql).then(function (results) {
     if (!results[0].length) {
       return res.status(400).send("unexpected error occured");
-      // return console.log(err);
     }
     res.send(results[0]);
   });

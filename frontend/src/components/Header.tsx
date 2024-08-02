@@ -93,7 +93,7 @@ export default function Header({ user, onClickHandler }) {
                         </Icon>
 
                         <Typography variant="h5" noWrap>
-                            College Space
+                            CollegeMate
                         </Typography>
                     </Box>
                     {user && (

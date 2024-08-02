@@ -64,7 +64,7 @@ export default function Navbar({ user, isNavbarOpen, onCloseHandler }) {
                     <Toolbar />
                     <div style={{ overflow: "auto" }}>
                         <List>
-                            <ListItemButton component={Link} to="/home/teacher">
+                            <ListItemButton component={Link} to="/home/teacher/class">
                                 <ListItemIcon>
                                     <FaChalkboardTeacher size="25px" />
                                 </ListItemIcon>

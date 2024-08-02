@@ -8,6 +8,7 @@ import { useState } from "react";
 // import "fontsource-roboto";
 import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useMaterialTableUpdater } from "./Hooks/useMaterialTableUpdater";
 const theme = createTheme({
     components: {
         // Name of the component
@@ -16,10 +17,12 @@ const theme = createTheme({
                 // Name of the slot
                 root: {
                     // Some CSS
-                    height: "100vh",
+                    height: "100%",
+                    minHeight: '100vh',
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    padding: 20,
                 },
             },
         },
@@ -67,10 +70,9 @@ export const FirstPage = () => {
     const [shadow1, setShadow1] = useState(initShadow);
     const [shadow2, setShadow2] = useState(initShadow);
     const [shadow3, setShadow3] = useState(initShadow);
-
     return (<>
         <ThemeProvider theme={theme}>
-            <Container classes={classes.container}>
+            <Container>
                 <Grid
                     container
                     spacing={3}

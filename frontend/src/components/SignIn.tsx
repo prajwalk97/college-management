@@ -17,6 +17,7 @@ import { trackPromise } from "react-promise-tracker";
 import Loading from "./Loading";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { updateJWT } from "../reducers/auth/actions";
+import { updateUserData } from "../reducers/user/actions";
 const theme = createTheme({
     components: {
         // Name of the component

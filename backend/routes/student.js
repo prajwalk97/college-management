@@ -19,7 +19,6 @@ router.post("/", auth, college_admin, function (req, res) {
     password,
     is_spc,
   } = req.body;
-  console.log("hiiiiiiiiiiiiiiiiiiii")
   db.query(
     sql,
     [
@@ -79,7 +78,6 @@ router.put("/", auth, college_admin, function (req, res) {
         console.log("re", results[0].changedRows);
         if (!results[0].changedRows) {
           return res.status(400).send("no data has been changed");
-          // return console.log(err);
         }
         res.send(results[0]);
       }).catch((error) => {

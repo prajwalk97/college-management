@@ -93,7 +93,7 @@ export default function Navbar({ user, isNavbarOpen, onCloseHandler }) {
                                 user && user.is_spc ? (
                                     <ListItemButton component={Link} to="/home/student/creation">
                                         <ListItemIcon>
-                                            <AiOutlineFolderAdd size="20px" className={classes.icons} />
+                                            <AiOutlineFolderAdd size="20px" />
                                         </ListItemIcon>
                                         <ListItemText primary={"Add Company"} />
                                     </ListItemButton>

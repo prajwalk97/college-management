@@ -6,12 +6,14 @@ const college_admin = require("../middleware/college_admin");
 
 router.get("/", auth, function (req, res) {
   const sql = `SELECT * FROM COURSE WHERE ?=d_id`;
-  db.query(sql, [1], function (err, results, fields) {
-    if (err) {
-      res.status(400).send(err.sqlMessage);
-      return console.log(err);
+  db.query(sql, [req.user.d_id]).then(function (results) {
+    console.log("courses", results[0])
+    if (!results[0].length) {
+
+      return res.status(300).send("Currently no announcements for your class!");
+      // return console.log(err);
     }
-    res.send(results);
+    res.send(results[0]);
   });
 });
 
@@ -45,12 +47,14 @@ router.get("/all", auth, college_admin, function (req, res) {
 
 router.get("/post", auth, function (req, res) {
   const sql = `SELECT * FROM CLASS_POST NATURAL JOIN COURSE WHERE c_id IN (SELECT c_id FROM COURSE_STUDENTS WHERE ?=s_id) ORDER BY DATE DESC`;
-  db.query(sql, [req.user.s_id], function (err, results, fields) {
-    if (err) {
-      res.status(502).send("SERVER ERROR!");
-      return console.log(err);
+  db.query(sql, [req.user.s_id]).then(function (results) {
+    console.log("courses", results[0])
+    if (!results[0].length) {
+
+      return res.status(300).send("Currently no announcements for your class!");
+      // return console.log(err);
     }
-    res.send(results);
+    res.send(results[0]);
   });
 });
 

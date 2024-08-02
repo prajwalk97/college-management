@@ -3,6 +3,7 @@ import BigButton from "../BigButton";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { Icon } from "@mui/material";
+import { heIL } from "@mui/x-date-pickers/locales";
 
 const classes = {
     root: {
@@ -11,8 +12,10 @@ const classes = {
     },
     container: {
         height: "100%",
+        minHeight: "fit-content"
     },
     grid: {
+        paddingTop: "16px",
         height: "90vh",
         alignItems: "center",
         justifyContent: "center"

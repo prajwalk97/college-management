@@ -11,11 +11,11 @@ function Router() {
         <Routes>
             <Route path="/" element={<FirstPage />} />
             <Route path="/home/admin/*" element={<AdminRouter />} />
-            <Route path="/home/student" element={<StudentRouter />} />
-            <Route path="/home/teacher" element={<TeacherRouter />} />
-            <Route path="/login/teacher" element={<SignIn isTeacher={true} isAdmin={false} />} />
-            <Route path="/login/student" element={<SignIn isTeacher={false} isAdmin={false} />} />
-            <Route path="/login/admin" element={<SignIn isTeacher={false} isAdmin={true} />} />
+            <Route path="/home/student/*" element={<StudentRouter />} />
+            <Route path="/home/teacher/*" element={<TeacherRouter />} />
+            <Route path="/login/teacher/*" element={<SignIn isTeacher={true} isAdmin={false} />} />
+            <Route path="/login/student/*" element={<SignIn isTeacher={false} isAdmin={false} />} />
+            <Route path="/login/admin/*" element={<SignIn isTeacher={false} isAdmin={true} />} />
         </Routes>
     );
 }
