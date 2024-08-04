@@ -23,7 +23,7 @@ export default function ClassPost() {
     useEffect(() => {
         trackPromise(
             axios
-                .get("/course/post", {
+                .get("course/posts", {
                     headers: { "x-auth-token": localStorage["x-auth-token"] },
                 })
                 .then((result) => {
@@ -31,8 +31,8 @@ export default function ClassPost() {
                     setPosts(result.data);
                 })
                 .catch((err) => {
-                    if (err.response && err.response.status === 400) {
-                        // navigateTo("/");
+                    if (err.response && err.response.status === 300) {
+                        alert(err.response.data);
                     } else {
                         console.log(err);
                         alert("Sorry!! There is something wrong with the Server");
@@ -48,7 +48,7 @@ export default function ClassPost() {
         const millisecondsInDay = 1000 * 60 * 60 * 24;
         const timeElapsed = (curDate - pubDate) / millisecondsInDay;
         return (<Grid item key={index} xs={12} sx={{ justifyContent: "center" }} >
-            <Post timeElapsed={Math.floor(timeElapsed)} key={post.p_id} title={post.title} message={post.message} />
+            <Post timeElapsed={Math.floor(timeElapsed)} key={post.p_id} title={post.title} message={post.message} course={post.name} author={post.author} />
         </Grid >);
     });
 

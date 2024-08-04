@@ -10,6 +10,8 @@ import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
 import DepartmentPost from "../components/Student/DepartmentPost";
 import ClassPost from "../components/Student/ClassPost";
+import ApplyPlacement from "../components/Student/ApplyPlacement";
+import CreatePlacement from "../components/Student/CreatePlacement";
 
 export default function StudentRouter() {
     const [isNavbarOpen, setNavbarOpen] = useState(false);
@@ -47,6 +49,8 @@ export default function StudentRouter() {
                     element={<DepartmentPost user={user} />}
                 />
                 <Route path="/class" element={<ClassPost />} />
+                <Route path="/placement" element={<ApplyPlacement />} />
+                <Route path="/creation" element={<CreatePlacement />} />
                 {/*<Route path="/home/admin/teacher/" element={EditTeacher} />
                 <Route path="/home/admin/register/" element={StudentCourse} />
                 <Route path="/home/admin/course/" element={AddCourse} />

@@ -10,6 +10,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import EditStudent from "../components/Admin/EditStudent";
 import EditTeacher from "../components/Admin/EditTeacher";
 import StudentCourse from "../components/Admin/CreateCourse";
+import RegisterStudentCourse from "../components/Admin/RegisterStudentCourse";
 
 export default function AdminRouter() {
     const [isNavbarOpen, setNavbarOpen] = useState(false);
@@ -44,8 +45,8 @@ export default function AdminRouter() {
                 <Route path="/" element={<EditStudent />} />
                 <Route path="/teacher" element={<EditTeacher />} />
                 <Route path="/course" element={<StudentCourse />} />
-                {/* <Route path="/home/admin/course/" element={AddCourse} />
-                <Route path="/home/admin/design/" element={DesignForm} /> */}
+                <Route path="/register" element={<RegisterStudentCourse />} />
+                {/*<Route path="/home/admin/design/" element={DesignForm} /> */}
             </Routes>
             <Loading />
         </div>

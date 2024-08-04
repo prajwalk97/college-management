@@ -67,7 +67,7 @@ export default function Home({ user }) {
                             link={"/home/student/placement"}
                         />
                     </Grid>
-                    <Grid item lg={lgColumns}>
+                    {/* <Grid item lg={lgColumns}>
                         <BigButton
                             component={
                                 <Icon sx={classes.root}>
@@ -76,7 +76,7 @@ export default function Home({ user }) {
                             }
                             title={"Course Notes"}
                         />
-                    </Grid>
+                    </Grid> */}
                     {user && user.is_spc ? (
                         <Grid item lg={lgColumns}>
                             <BigButton

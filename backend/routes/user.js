@@ -12,7 +12,7 @@ router.get("/", auth, function (req, res) {
       if (results[0].length == 0)
         return res.status(400).send("Invalid Email or Password!");
       delete results[0].password;
-      console.log("student", results[0]);
+      // console.log("student", results[0]);
       res.send(results[0][0]);
     });
 });

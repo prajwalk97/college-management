@@ -18,10 +18,12 @@ export default function Post(props) {
     var text = props.timeElapsed + " days ago";
     const author = props.author;
     if (author) {
+        console.log(author);
         text = "- posted by " + author + "," + props.timeElapsed + " days ago";
     }
     var upper;
     if (props.course) {
+        console.log(props.course, "course");
         upper = (
             <Typography variant="h6" align="left" sx={classes.upper}>
                 {props.course}
