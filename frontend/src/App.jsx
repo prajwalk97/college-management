@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import Router from './Router';
 import { createTheme, ThemeProvider } from '@mui/material';
-axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL ?? "http://localhost:1500" + "/api/";
+axios.defaults.baseURL = (import.meta.env.VITE_SERVER_URL ?? "http://localhost:1500") + "/api/";
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem(
   "x-auth-token"
 );

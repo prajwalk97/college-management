@@ -52,10 +52,11 @@ export default function DepartmentPost({ user }) {
     const feed = posts.map((post, index) => {
         const curDate = new Date();
         const pubDate = new Date(post.date);
-        const timeElapsed = curDate - pubDate;
-        console.log(timeElapsed / 1000);
+        // console.log("posts", post.date, curDate, pubDate);
+        const millisecondsInDay = 1000 * 60 * 60 * 24;
+        const timeElapsed = (curDate - pubDate) / millisecondsInDay;
         return (<Grid item key={index} xs={12} sx={{ justifyContent: "center" }} >
-            <Post timeElapsed={Math.floor(timeElapsed)} key={post.p_id} title={post.title} message={post.message} />
+            <Post timeElapsed={Math.floor(timeElapsed)} key={post.p_id} title={post.title} message={post.message} course={post.name} author={post.author} />
         </Grid >);
     });
     return (
