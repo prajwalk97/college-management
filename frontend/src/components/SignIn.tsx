@@ -207,11 +207,6 @@ export default function SignIn(props) {
                         >
                             Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link to="/reset" style={{ textDecoration: "none" }}>Forgot password?</Link>
-                            </Grid>
-                        </Grid>
                     </form>
                 </Paper>
             </Container>
