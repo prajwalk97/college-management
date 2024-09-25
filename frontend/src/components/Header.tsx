@@ -89,7 +89,7 @@ export default function Header({ user, onClickHandler }) {
                 <Toolbar>
                     <Box display="flex" flexGrow={1}>
                         <Icon onClick={() => onClickHandler(prev => !prev)}>
-                            <img src="/assets/logo.svg" />
+                            <img src="/assets/logo.svg" title="view dashboard" />
                         </Icon>
 
                         <Typography variant="h5" noWrap>
@@ -99,7 +99,7 @@ export default function Header({ user, onClickHandler }) {
                     {user && (
                         <React.Fragment>
                             <Icon color="primary" onClick={() => setOpen(true)}>
-                                <img src="/assets/user.svg" />
+                                <img src="/assets/user.svg" title="sign out" />
                             </Icon>
                             <Typography variant="h6" align="right">
                                 {user.name}
