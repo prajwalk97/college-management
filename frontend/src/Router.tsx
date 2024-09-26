@@ -5,11 +5,15 @@ import SignIn from "./components/SignIn";
 import AdminRouter from "./routes/AdminRouter";
 import TeacherRouter from "./routes/TeacherRouter";
 import StudentRouter from "./routes/StudentRouter";
+import { ForgotPassword } from "./components/ForgotPassword/ForgotPassword";
+import { ResetPassword } from "./components/ResetPassword/ResetPassword";
 
 function Router() {
     return (
         <Routes>
             <Route path="/" element={<FirstPage />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/home/admin/*" element={<AdminRouter />} />
             <Route path="/home/student/*" element={<StudentRouter />} />
             <Route path="/home/teacher/*" element={<TeacherRouter />} />

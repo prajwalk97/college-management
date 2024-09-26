@@ -3,12 +3,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,7 +15,6 @@ import { trackPromise } from "react-promise-tracker";
 import Loading from "./Loading";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { updateJWT } from "../reducers/auth/actions";
-import { updateUserData } from "../reducers/user/actions";
 const theme = createTheme({
     components: {
         // Name of the component
@@ -55,6 +52,9 @@ const theme = createTheme({
 });
 
 export default function SignIn(props) {
+    const { isAdmin, isTeacher } = props;
+    const userType = isAdmin ? "ADMIN" : isTeacher ? "INSTRUCTOR" : "STUDENT";
+    console.log("debug :: ", userType);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isWrong, setWrong] = useState(false);
@@ -207,6 +207,9 @@ export default function SignIn(props) {
                         >
                             Sign In
                         </Button>
+                        <Typography color="secondary" variant="subtitle1" onClick={() => navigateTo("/forgotpassword", { state: { userType } })} sx={{ cursor: "pointer", width: "fit-content" }}>
+                            Forgot password?
+                        </Typography>
                     </form>
                 </Paper>
             </Container>

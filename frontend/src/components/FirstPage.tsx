@@ -23,6 +23,7 @@ const theme = createTheme({
                     alignItems: "center",
                     justifyContent: "center",
                     padding: 20,
+                    flexDirection: "column"
                 },
             },
         },
@@ -72,13 +73,14 @@ export const FirstPage = () => {
     const [shadow3, setShadow3] = useState(initShadow);
     return (<>
         <ThemeProvider theme={theme}>
+
             <Container>
+                <Typography variant="h2" sx={{ fontWeight: 300 }}>
+                    CollegeMate
+                </Typography>
                 <Grid
                     container
                     spacing={3}
-                // justify="center"
-                // alignItems="center"
-
                 >
                     <Grid item>
                         <Link to={"/login/admin"} >
@@ -132,7 +134,7 @@ export const FirstPage = () => {
                     </Grid>
                 </Grid>
             </Container>
-        </ThemeProvider>
+        </ThemeProvider >
     </>
     );
 }
