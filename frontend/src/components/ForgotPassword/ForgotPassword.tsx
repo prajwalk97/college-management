@@ -51,6 +51,7 @@ export const ForgotPassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setMessage("");
         try {
             const response = await axios.post('/forgot-password', { email, userType });
             setMessage(response.data.message);

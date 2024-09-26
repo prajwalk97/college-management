@@ -8,7 +8,7 @@ import { useState } from "react";
 // import "fontsource-roboto";
 import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { useMaterialTableUpdater } from "./Hooks/useMaterialTableUpdater";
+
 const theme = createTheme({
     components: {
         // Name of the component
@@ -75,8 +75,11 @@ export const FirstPage = () => {
         <ThemeProvider theme={theme}>
 
             <Container>
-                <Typography variant="h2" sx={{ fontWeight: 300 }}>
+                <Typography variant="h2" sx={{ fontWeight: 500 }}>
                     CollegeMate
+                </Typography>
+                <Typography variant="h5" sx={{ fontWeight: 300, color: "green" }} >
+                    Choose your Role
                 </Typography>
                 <Grid
                     container
