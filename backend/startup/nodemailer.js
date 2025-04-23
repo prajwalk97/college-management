@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 // Function to send reset password email
 const sendResetEmail = (email, token) => {
-    const resetUrl = process.env.clientURL ?? `http://localhost:5173` + `/reset-password/${token}`;
+    const resetUrl = (process.env.clientURL ?? `http://localhost:5173`) + `/reset-password/${token}`;
 
     const mailOptions = {
         from: process.env.EMAIL,

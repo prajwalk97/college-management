@@ -5,7 +5,7 @@ import { useState } from "react"
 import Loading from "../Loading";
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme({
     components: {
@@ -48,10 +48,10 @@ export const ForgotPassword = () => {
     const { userType } = location.state;
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState('');
-
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setMessage("");
+        navigate("/", { replace: true });
         try {
             const response = await axios.post('/forgot-password', { email, userType });
             setMessage(response.data.message);
