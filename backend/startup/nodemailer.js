@@ -14,7 +14,7 @@ const sendResetEmail = (email, token) => {
     const resetUrl = (process.env.clientURL ?? `http://localhost:5173`) + `/reset-password/${token}`;
 
     const mailOptions = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL ?? "prajwalindia18@gmail.com",
         to: email,
         subject: 'Password Reset Request',
         html: `<p>You requested for a password reset</p>

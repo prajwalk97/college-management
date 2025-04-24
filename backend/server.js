@@ -56,7 +56,7 @@ app.post('/api/forgot-password', async (req, res) => {
   //     // console.log("student", results[0]);
   //     res.send(results[0][0]);
   //   });
-  console.log(userType);
+  // console.log(userType);
   try {
     const user = await db.query(
       `SELECT * FROM ${userType} WHERE email=?`,
